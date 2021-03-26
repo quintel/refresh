@@ -1,7 +1,9 @@
-interface ButtonProps {
-  children: React.ReactNode;
-}
+import styles from './Button.module.scss';
 
-export default function Button({ children }: ButtonProps): JSX.Element {
-  return <button>{children}</button>;
+export type ButtonProps = {
+  children: React.ReactNode;
+};
+
+export default function Button({ children }: ButtonProps): React.ReactElement {
+  return <button className={styles.button}>{children}</button>;
 }

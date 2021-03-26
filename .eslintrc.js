@@ -40,6 +40,26 @@ module.exports = {
     {
       files: ['*.{ts,tsx}'],
       extends: ['plugin:@typescript-eslint/recommended'],
+      // Disable mandatory prop types in TS files since types in React.FC<T> cannot be inferred.
+      rules: {
+        'react/prop-types': 'off',
+      },
+    },
+    // Allow {} as a type in components.
+    // See https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492
+    {
+      files: '*.tsx',
+      rules: {
+        '@typescript-eslint/ban-types': [
+          'error',
+          {
+            extendDefaults: true,
+            types: {
+              '{}': false,
+            },
+          },
+        ],
+      },
     },
     {
       // Let ESLint know about various globals used in test files.
