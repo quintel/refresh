@@ -17,7 +17,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["./src/components/*"],
+      "@/types/*": ["./src/types/*"],
   },
   "include": [
     "css.d.ts",
@@ -26,6 +30,7 @@
     "**/*.tsx"
   ],
   "exclude": [
+    ".yarn",
     "node_modules"
   ]
 }
