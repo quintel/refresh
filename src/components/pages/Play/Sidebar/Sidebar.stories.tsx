@@ -62,7 +62,10 @@ WithBars.args = {
         },
       ],
     },
-    { key: 'supply', items: [{ key: 'electricity' }] },
+    {
+      key: 'supply',
+      items: [{ key: 'electricity' }, { key: 'an item with a long name which will wrap ' }],
+    },
   ],
   defaultActivePath: ['demand', 'households'],
 };

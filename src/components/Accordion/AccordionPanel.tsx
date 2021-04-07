@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import { AccordionPanel as ReachPanel, useAccordionItemContext } from '@reach/accordion';
 import AnimatedPanel from '../Disclosure/AnimatedPanel';
 

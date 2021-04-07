@@ -33,9 +33,15 @@ function itemLeftPadding({ depth }: { depth: number }) {
  */
 export const ItemContent = styled.a<{ active: boolean; depth: number }>`
   background: ${({ active }) => (active ? 'rgb(255 255 255 / 50%)' : 'transparent')};
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
   padding: 0.25rem 0 0.25rem ${itemLeftPadding};
+`;
+
+/**
+ * Contains the item icon and label, but not the bar or child items.
+ */
+export const IconAndLabel = styled.div`
+  display: flex;
 `;
 
 /**
