@@ -1,6 +1,5 @@
 import React, { ComponentPropsWithoutRef, useEffect, useRef, useState } from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 
 const Panel = styled.div<{ open: boolean }>`
   box-sizing: content-box;
@@ -47,8 +46,13 @@ export default function AnimatedPanel<T extends React.ElementType>({
     const currentHeight = panelRef.current.style.height;
 
     if (!animate || currentHeight === '') {
-      // initial render
+      // Initial render
       panelRef.current.style.height = open ? 'auto' : '0px';
+      return;
+    }
+
+    if (open === (currentHeight !== '0px')) {
+      // Skip if DOM already represents current state (`animate` probably changed).
       return;
     }
 
@@ -65,11 +69,15 @@ export default function AnimatedPanel<T extends React.ElementType>({
         'transitionend',
         // Don't set the height when the disclosure is closed prior to the transition completing.
         // () => currentRender && setHeight('auto'),
-        () => currentRender && panelRef.current && (panelRef.current.style.height = 'auto'),
+        () => {
+          currentRender && panelRef.current && (panelRef.current.style.height = 'auto');
+        },
         { once: true }
       );
 
-      return () => (currentRender = false);
+      return () => {
+        currentRender = false;
+      };
     } else {
       window.requestAnimationFrame(() =>
         window.requestAnimationFrame(
@@ -77,9 +85,7 @@ export default function AnimatedPanel<T extends React.ElementType>({
         )
       );
     }
-
-    return () => {};
-  }, [open]);
+  }, [open, animate]);
 
   return (
     <Component

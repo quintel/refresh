@@ -21,7 +21,8 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["./src/components/*"],
-      "@/types/*": ["./src/types/*"],
+      "@/types/*": ["./src/types/*"]
+    }
   },
   "include": [
     "css.d.ts",

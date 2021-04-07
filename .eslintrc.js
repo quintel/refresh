@@ -29,12 +29,7 @@ module.exports = {
     // allow jsx syntax in js files (for next.js project).
     'react/jsx-filename-extension': [1, { extensions: ['.jsx', '.tsx'] }],
     'unicorn/filename-case': 'off',
-    'unicorn/prevent-abbreviations': [
-      'error',
-      {
-        ignore: [/\b\w*props/i, 'req', 'res'],
-      },
-    ],
+    'unicorn/prevent-abbreviations': 'off',
   },
   overrides: [
     {
