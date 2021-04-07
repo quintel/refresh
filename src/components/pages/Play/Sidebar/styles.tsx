@@ -21,6 +21,12 @@ export const SectionLabel = styled.button`
   }
 `;
 
+function itemLeftPadding({ depth }: { depth: number }) {
+  return depth === 1
+    ? `calc(${iconSize(1)}px + 0.25rem)`
+    : `calc(${iconSize(1)}px + 0.25rem + ((${iconSize(2)}px + 0.25rem) * ${depth - 1}))`;
+}
+
 /**
  * Wraps around the content for a sidebar item - the icon, label, and bar chart, but not the
  * elements for any child items.
@@ -29,25 +35,29 @@ export const ItemContent = styled.a<{ active: boolean; depth: number }>`
   background: ${({ active }) => (active ? 'rgb(255 255 255 / 50%)' : 'transparent')};
   display: flex;
   flex-wrap: wrap;
-  padding: 0.25rem 0 0.25rem
-    ${({ depth }) =>
-      depth === 2
-        ? `calc(${Math.max(0, depth - 2)}rem + 0.5rem + 20px)`
-        : `${Math.max(0, depth - 2)}rem`};
+  padding: 0.25rem 0 0.25rem ${itemLeftPadding};
 `;
+
+/**
+ * Returns the size of an icon for a sidebar item at the given depth.
+ */
+function iconSize(depth: number) {
+  return depth === 1 ? 20 : 14;
+}
 
 /**
  * Placeholder component for icons used in sidebar items.
  */
-export const Icon = styled.div`
+export const Icon = styled.div<{ depth: number }>`
   align-items: center;
   background: #bbb;
   border-radius: 9999px;
   display: inline-flex;
-  height: 20px;
+  height: ${({ depth }) => iconSize(depth)}px;
   justify-content: space-around;
-  margin-right: 0.5rem;
-  width: 20px;
+  margin-left: calc(-${({ depth }) => iconSize(depth)}px - 0.25rem);
+  margin-right: 0.25rem;
+  width: ${({ depth }) => iconSize(depth)}px;
 `;
 
 /**
@@ -65,6 +75,6 @@ export const Bar = styled.div<{ width: number }>`
     height: 0.25rem;
     margin-right: ${({ width }) => (width === 0 ? '0' : '0.25rem')};
     transition: margin-right 0.2s ease, width 0.2s ease;
-    width: max(0px, calc(var(--bar-width, 0%) * 0.75));
+    width: max(0px, calc(var(--bar-width, 0%) * 0.7));
   }
 `;

@@ -200,11 +200,12 @@ function ItemWithChildren({ activePath, bar, icon, items, onActivate, path }: It
  * The contents of an Item (the icon, label, and bar), minus any children.
  */
 function ItemLabel({ bar, icon, path }: Pick<ItemProps, 'bar' | 'icon' | 'path'>) {
+  const depth = path.length - 1;
   return (
     <>
-      {path.length === 2 ? (
-        <Icon aria-hidden="true">{icon ? icon[0].toUpperCase() : '?'}</Icon>
-      ) : undefined}
+      <Icon aria-hidden="true" depth={depth}>
+        {depth > 1 ? '>' : icon ? icon[0].toUpperCase() : '?'}
+      </Icon>
       {keyFromPath(path)}
       {bar ? <Bar {...bar} /> : undefined}
     </>

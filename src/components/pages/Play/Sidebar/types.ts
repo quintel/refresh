@@ -21,8 +21,11 @@ export interface Section extends SidebarElement {
 /**
  * Represents a sidebar item nested inside a Section or other Item. These may have an
  * icon and bar.
+ *
+ * By default, items may contain a nested item but those nested items may not have items of their
+ * own.
  */
-export interface Item extends SidebarElement {
+export interface Item<NestedItems = Item<never>[]> extends SidebarElement {
   // Optional settings for showing a mini single-series horizontal bar chart below the sidebar item
   // name.
   bar?: {
@@ -40,5 +43,5 @@ export interface Item extends SidebarElement {
   icon?: string;
 
   // Sub-items are optional.
-  items?: Item[];
+  items?: NestedItems;
 }

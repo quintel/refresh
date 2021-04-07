@@ -66,17 +66,3 @@ WithBars.args = {
   ],
   defaultActivePath: ['demand', 'households'],
 };
-
-export const ManyNested = Template.bind({});
-ManyNested.args = {
-  items: [
-    {
-      key: 'flexibility',
-      items: [
-        { key: 'overview' },
-        { key: 'excess-electricity', items: [{ key: 'storage', items: [{ key: 'p2p' }] }] },
-        { key: 'other' },
-      ],
-    },
-  ],
-};
