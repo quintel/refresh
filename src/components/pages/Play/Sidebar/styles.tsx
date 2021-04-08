@@ -23,8 +23,12 @@ export const SectionLabel = styled.button`
 
 function itemLeftPadding({ depth }: { depth: number }) {
   return depth === 1
-    ? `calc(${iconSize(1)}px + 0.25rem)`
-    : `calc(${iconSize(1)}px + 0.25rem + ((${iconSize(2)}px + 0.25rem) * ${depth - 1}))`;
+    ? `calc(${iconSize(1)}px + 1rem)`
+    : `calc(${iconSize(1)}px + 1rem + ((${iconSize(2)}px + 0.25rem) * ${depth - 1}))`;
+}
+
+function itemVerticalPadding({ depth }: { depth: number }) {
+  return depth === 1 ? '0.375rem' : '0.25rem';
 }
 
 /**
@@ -34,14 +38,8 @@ function itemLeftPadding({ depth }: { depth: number }) {
 export const ItemContent = styled.a<{ active: boolean; depth: number }>`
   background: ${({ active }) => (active ? 'rgb(255 255 255 / 50%)' : 'transparent')};
   display: block;
-  padding: 0.25rem 0 0.25rem ${itemLeftPadding};
-`;
-
-/**
- * Contains the item icon and label, but not the bar or child items.
- */
-export const IconAndLabel = styled.div`
-  display: flex;
+  line-height: 1.3;
+  padding: ${itemVerticalPadding} 1rem ${itemVerticalPadding} ${itemLeftPadding};
 `;
 
 /**
@@ -59,8 +57,10 @@ export const Icon = styled.div<{ depth: number }>`
   background: #bbb;
   border-radius: 9999px;
   display: inline-flex;
+  flex-shrink: 0;
   height: ${({ depth }) => iconSize(depth)}px;
   justify-content: space-around;
+  margin-top: ${({ depth }) => (depth === 1 ? '0px' : '0.125rem')};
   margin-left: calc(-${({ depth }) => iconSize(depth)}px - 0.25rem);
   margin-right: 0.25rem;
   width: ${({ depth }) => iconSize(depth)}px;
@@ -70,17 +70,20 @@ export const Icon = styled.div<{ depth: number }>`
  * Shows an optional sparkline-style horizontal bar chart and value below the item label.
  */
 export const Bar = styled.div<{ width: number }>`
-  display: block;
+  align-items: center;
+  color: #777;
+  display: flex;
   font-size: 0.75rem;
+  line-height: 1.125;
   width: 100%;
 
   &::before {
-    background: #ccc;
+    background: #bbb;
     content: ' ';
     display: inline-block;
-    height: 0.25rem;
+    height: 0.3125rem;
     margin-right: ${({ width }) => (width === 0 ? '0' : '0.25rem')};
-    transition: margin-right 0.2s ease, width 0.2s ease;
+    transition: margin-right 0.15s ease, width 0.15s ease;
     width: max(0px, calc(var(--bar-width, 0%) * 0.7));
   }
 `;

@@ -6,14 +6,7 @@ import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '../..
 import { Disclosure, DisclosureButton, DisclosurePanel } from '../../../Disclosure';
 import { Item as ItemType, Section as SectionType } from './types';
 
-import {
-  Bar as StyledBar,
-  Icon,
-  ItemContent,
-  IconAndLabel,
-  SectionLabel,
-  SidebarWrapper,
-} from './styles';
+import { Bar as StyledBar, Icon, ItemContent, SectionLabel, SidebarWrapper } from './styles';
 
 interface SidebarProps {
   // Controlled-mode way of setting the currently active item. In controlled mode the Sidebar will
@@ -211,12 +204,10 @@ function ItemLabel({ bar, icon, path }: Pick<ItemProps, 'bar' | 'icon' | 'path'>
   const depth = path.length - 1;
   return (
     <>
-      <IconAndLabel>
-        <Icon aria-hidden="true" depth={depth}>
-          {depth > 1 ? '>' : icon ? icon[0].toUpperCase() : '?'}
-        </Icon>
-        {keyFromPath(path)}
-      </IconAndLabel>
+      <Icon aria-hidden="true" depth={depth}>
+        {depth > 1 ? '>' : icon ? icon[0].toUpperCase() : '?'}
+      </Icon>
+      {keyFromPath(path)}
       {bar ? <Bar {...bar} /> : undefined}
     </>
   );

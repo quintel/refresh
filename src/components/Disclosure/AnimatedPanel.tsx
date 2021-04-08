@@ -7,7 +7,7 @@ const Panel = styled.div<{ open: boolean }>`
   opacity: ${({ open }) => (open ? 1 : 0)};
   overflow: hidden;
   pointer-events: ${({ open }) => !open && 'none'};
-  transition-duration: var(--transition-duration, 0.2s);
+  transition-duration: var(--transition-duration, 0.15s);
   transition-property: height, opacity;
   transition-timing-function: ease;
 
