@@ -1,15 +1,16 @@
 import styled from '@emotion/styled';
 
+import { gray } from '../../../../styles/colors';
 import { xs } from '../../../../styles/typography';
 
 export const SidebarWrapper = styled.nav`
-  background: #eee;
-  box-shadow: inset -1px 0 0 rgba(0 0 0 / 10%);
+  background: ${gray[1]};
+  border-right: 1px solid ${gray[3]};
   width: 220px;
 `;
 
 export const SectionLabel = styled.button`
-  background: #ddd;
+  background: ${gray[2]};
   border: 0;
   cursor: pointer;
   display: block;
@@ -38,7 +39,7 @@ function itemVerticalPadding({ depth }: { depth: number }) {
  * elements for any child items.
  */
 export const ItemContent = styled.a<{ active: boolean; depth: number }>`
-  background: ${({ active }) => (active ? 'rgb(255 255 255 / 50%)' : 'transparent')};
+  background: ${({ active }) => (active ? gray[0] : undefined)};
   display: block;
   line-height: 1.3;
   padding: ${itemVerticalPadding} 1rem ${itemVerticalPadding} ${itemLeftPadding};
