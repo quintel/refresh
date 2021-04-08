@@ -1,0 +1,35 @@
+.sidebar {
+  background: transparent;
+}
+
+.item {
+  padding-left: 10px;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+.active {
+  font-weight: bold;
+}
+
+.bar {
+  display: block;
+  width: 100%;
+
+  &::before {
+    background: #ccc;
+    content: " ";
+    display: var(--bar-display, inline-block);
+    height: 4px;
+    margin-right: 0.25rem;
+    width: max(0px, calc(var(--bar-width, 0%) - 3rem));
+  }
+}
+
+.zero-bar {
+  &::before {
+    display: none;
+  }
+}
