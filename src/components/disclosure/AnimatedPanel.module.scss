@@ -1,0 +1,19 @@
+.panel {
+  box-sizing: content-box;
+  height: var(--panel-height, 0px);
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  transition-duration: var(--transition-duration, 0.2s);
+  transition-property: height, opacity;
+  transition-timing-function: ease;
+
+  &[hidden] {
+    display: block;
+  }
+}
+
+.open {
+  opacity: 1;
+  pointer-events: auto;
+}

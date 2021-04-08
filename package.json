@@ -11,6 +11,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@reach/accordion": "^0.14.0",
+    "@reach/disclosure": "^0.14.0",
+    "@testing-library/user-event": "^13.1.1",
+    "clsx": "^1.1.1",
     "next": "10.0.9",
     "react": "17.0.2",
     "react-dom": "17.0.2"
@@ -29,6 +33,7 @@
     "@typescript-eslint/parser": "^4.19.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "csstype": "^3.0.7",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.1",
