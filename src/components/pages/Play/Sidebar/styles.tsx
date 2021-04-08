@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { xs } from '../../../../styles/typography';
+
 export const SidebarWrapper = styled.nav`
   background: #eee;
   box-shadow: inset -1px 0 0 rgba(0 0 0 / 10%);
@@ -73,9 +75,10 @@ export const Bar = styled.div<{ width: number }>`
   align-items: center;
   color: #777;
   display: flex;
-  font-size: 0.75rem;
   line-height: 1.125;
   width: 100%;
+
+  ${xs}
 
   &::before {
     background: #bbb;

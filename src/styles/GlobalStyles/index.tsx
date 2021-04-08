@@ -2,6 +2,7 @@ import { Global, css } from '@emotion/react';
 
 import inter from './inter';
 import reset from './reset';
+import { sm } from '../typography';
 
 const globalStyles = css`
   ${reset}
@@ -18,7 +19,7 @@ const globalStyles = css`
     padding: 0;
   }
   body {
-    font-size: 0.875rem;
+    ${sm}
   }
 `;
 
