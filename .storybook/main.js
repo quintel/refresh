@@ -1,4 +1,5 @@
 const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const toPath = (_path) => path.join(process.cwd(), _path);
 
@@ -6,10 +7,12 @@ module.exports = {
   stories: ['../stories/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   webpackFinal: async (config) => {
+    console.log(config.resolve);
     return {
       ...config,
       resolve: {
         ...config.resolve,
+        plugins: [...config.resolve.plugins, new TsconfigPathsPlugin({})],
         alias: {
           ...config.resolve.alias,
           '@emotion/core': toPath('node_modules/@emotion/react'),

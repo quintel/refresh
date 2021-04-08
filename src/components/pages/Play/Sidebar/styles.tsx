@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { gray } from '../../../../styles/colors';
-import { xs } from '../../../../styles/typography';
+import { gray } from '@/styles/colors';
+import { xs } from '@/styles/typography';
 
 export const SidebarWrapper = styled.nav`
   background: ${gray[1]};
