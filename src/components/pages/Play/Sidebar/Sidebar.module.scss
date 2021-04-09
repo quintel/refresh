@@ -1,17 +1,50 @@
+@use '../../../../styles/tokens' as *;
+
 .sidebar {
   background: transparent;
+  width: 220px;
 }
 
-.item {
-  padding-left: 10px;
+.section {
+  padding-bottom: 0.5rem;
+}
+
+.section-label {
+  @include text-base;
+
+  display: block;
+  font-weight: 600;
+  text-align: left;
+  width: 100%;
+}
+
+// Common box properties for section buttons and items.
+.section-label, .item {
+  padding: 0.125rem 0.375rem;
+}
+
+// Class used to wrap all items with a section, or nested items within an item.
+.nested-items {
+  display: block;
 
   &:focus:not(:focus-visible) {
     outline: none;
   }
+
+  & & {
+    padding-left: 10px;
+  }
 }
 
-.active {
-  font-weight: bold;
+// Clickable element for items labels.
+.item {
+  border-radius: 4px;
+  display: block;
+}
+
+.active-item {
+  background-color: $color-primary-5;
+  color: #fff;
 }
 
 .bar {

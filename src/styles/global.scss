@@ -1,0 +1,11 @@
+@use 'tokens' as *;
+
+@import 'reset';
+@import 'inter';
+
+body {
+  @include text-sm;
+
+  color: $text-color;
+  font-family: $font-family;
+}
