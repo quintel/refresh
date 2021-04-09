@@ -1,12 +1,14 @@
 import { Global, css } from '@emotion/react';
 
 import inter from './inter';
+import overrides from './overrides';
 import reset from './reset';
 import { sm } from '../typography';
 
 const globalStyles = css`
   ${reset}
   ${inter}
+  ${overrides}
 
   html {
     font-family: 'Inter var', 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
