@@ -2,6 +2,7 @@
 
 @import 'reset';
 @import 'inter';
+@import 'overrides';
 
 body {
   @include text-sm;

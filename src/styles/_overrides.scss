@@ -1,0 +1,9 @@
+/**
+ * The Reach-UI menu bydefault sets the display property to none as soon as the user closes the
+ * menu. This prevents animating the element exit.
+ */
+ [data-reach-menu-items][hidden],
+ [data-reach-menu-popover][hidden] {
+   display: block !important;
+   pointer-events: none;
+ }
