@@ -65,7 +65,7 @@ function activatableProps({
   onActivate: () => void;
 }) {
   return {
-    className: isActive ? styles.active : undefined,
+    className: cn([styles.item, isActive && styles['active-item']]),
     href: `#${key}`,
     onClick: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
       event.preventDefault();
@@ -119,11 +119,11 @@ function pathIsActive(currentPath: string[], activePath: string[]) {
 /**
  * Component used for top-level items in the sidebar.
  */
-function Section({ activePath, items, onActivate, path }: SidebarSectionProps) {
+function Section({ activePath, items, onActivate, path }: SectionProps) {
   return (
-    <AccordionItem>
-      <AccordionButton>{keyFromPath(path)}</AccordionButton>
-      <AccordionPanel className={styles.item}>
+    <AccordionItem className={styles.section}>
+      <AccordionButton className={styles['section-label']}>{keyFromPath(path)}</AccordionButton>
+      <AccordionPanel className={styles['nested-items']}>
         {items.map((item) => (
           <Item
             {...item}
@@ -187,7 +187,7 @@ function ItemWithChildren({ activePath, bar, items, onActivate, path }: ItemProp
         {keyFromPath(path)}
         {bar ? <ItemBar {...bar} /> : undefined}
       </DisclosureButton>
-      <DisclosurePanel className={styles.item}>
+      <DisclosurePanel className={styles['nested-items']}>
         {items?.map((item) => (
           <Item
             {...item}

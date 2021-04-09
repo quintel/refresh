@@ -16,6 +16,10 @@
   font-weight: 600;
   text-align: left;
   width: 100%;
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
 }
 
 // Common box properties for section buttons and items.
