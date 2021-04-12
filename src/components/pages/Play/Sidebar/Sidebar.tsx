@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import '@reach/accordion/styles.css';
 
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '@/components/Accordion';
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@/components/Disclosure';
+import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '@/components/accordion';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@/components/disclosure';
 import { Item as ItemType, Section as SectionType } from './types';
 
 import { Bar as StyledBar, Icon, ItemContent, SectionLabel, SidebarWrapper } from './styles';

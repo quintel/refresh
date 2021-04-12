@@ -1,5 +1,5 @@
 import { AccordionPanel as ReachPanel, useAccordionItemContext } from '@reach/accordion';
-import AnimatedPanel from '../Disclosure/AnimatedPanel';
+import AnimatedPanel from '../disclosure/AnimatedPanel';
 
 /**
  * Provides an animated version of Reach UI's DisclosurePanel.
