@@ -1,0 +1,69 @@
+@use '../../../../styles/tokens' as *;
+
+/**
+ * Main wrapper element for the scenario nav.
+ */
+.wrapper {
+  background: $color-gray-1;
+  border-bottom: 1px solid $color-gray-3;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+
+/**
+ * Contains the information on the left of the nav: the dataset, end year, and saved scenario title.
+ */
+.scenario-info {
+  padding: $space-10 $space-16;
+}
+
+.area-name {
+  font-weight: 600;
+}
+
+.scenario-title {
+  color: $color-secondary;
+
+  &::before {
+    content: ' – ';
+  }
+}
+
+/**
+ * Contains the action buttons on teh right of the nav.
+ */
+.actions {
+  display: flex;
+ }
+
+.action-button {
+  @include default-transition(background-color);
+
+  background-color: transparent;
+  border-left: 1px solid $color-gray-3;
+  padding: $space-10 $space-16;
+  position: relative;
+
+  &:focus {
+    z-index: 1;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  &:active,
+  &[aria-expanded] {
+    background-color: var(--color-gray-2);
+  }
+}
+
+.with-ellipses::after {
+  content: '…';
+}

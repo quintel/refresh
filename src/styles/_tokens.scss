@@ -29,13 +29,14 @@ $color-primary-7: hsl(222, 62%, 44%);
 $color-primary-8: hsl(222, 66%, 36%);
 $color-primary-9: hsl(222, 70%, 30%);
 
+$color-secondary: $color-gray-5;
+$color-text: $color-gray-8;
+
 // Text and sizes
 // --------------
 
 $font-family: 'Inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial,
   sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-
-$text-color: $color-gray-8;
 
 @mixin text-xs {
   font-size: 0.75rem;
