@@ -24,6 +24,6 @@ describe('Disclosure', () => {
     userEvent.click(screen.getByRole('button', { name: 'Open' }));
 
     expect(screen.getByTestId('contents')).not.toHaveAttribute('hidden');
-    expect(screen.getByTestId('contents')).toHaveStyle({ '--panel-height': '0px' });
+    expect(screen.getByTestId('contents')).toHaveStyle({ height: 'auto' });
   });
 });

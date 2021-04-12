@@ -29,10 +29,10 @@ describe('Sidebar', () => {
     const item = screen.getByRole('link', { name: 'world' });
 
     expect(section).toBeInTheDocument();
-    expect(section).not.toHaveClass(styles.active);
+    expect(section).not.toHaveClass(styles['active-item']);
 
     expect(item).toBeInTheDocument();
-    expect(item).toHaveClass(styles.active);
+    expect(item).toHaveClass(styles['active-item']);
   });
 
   it('renders a sidebar with a single three-level item', () => {
@@ -45,16 +45,16 @@ describe('Sidebar', () => {
     const innerItem = screen.getByRole('link', { name: 'three' });
 
     expect(section).toBeInTheDocument();
-    expect(section).not.toHaveClass(styles.active);
+    expect(section).not.toHaveClass(styles['active-item']);
 
     expect(outerItem).toBeInTheDocument();
-    expect(outerItem).toHaveClass(styles.active);
+    expect(outerItem).toHaveClass(styles['active-item']);
 
     expect(innerItem).toBeInTheDocument();
 
     // The third-level item is not active. When the user does not specify the current active path,
     // the component marks as active the first non-section item.
-    expect(innerItem).not.toHaveClass(styles.active);
+    expect(innerItem).not.toHaveClass(styles['active-item']);
   });
 
   it('renders a sidebar with two sections, each with an item', () => {
@@ -75,7 +75,7 @@ describe('Sidebar', () => {
     // Renders the first section.
     expect(firstSection).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'world' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'world' })).toHaveClass(styles.active);
+    expect(screen.getByRole('link', { name: 'world' })).toHaveClass(styles['active-item']);
 
     // Renders the second section.
     expect(screen.getByRole('button', { name: 'good' })).toBeInTheDocument();
@@ -104,9 +104,9 @@ describe('Sidebar', () => {
     expect(screen.getByRole('link', { name: 'bye' })).toBeInTheDocument();
 
     // Clicking on "bye" makes it active.
-    expect(screen.getByRole('link', { name: 'bye' })).not.toHaveClass(styles.active);
+    expect(screen.getByRole('link', { name: 'bye' })).not.toHaveClass(styles['active-item']);
     userEvent.click(screen.getByRole('link', { name: 'bye' }));
-    expect(screen.getByRole('link', { name: 'bye' })).toHaveClass(styles.active);
+    expect(screen.getByRole('link', { name: 'bye' })).toHaveClass(styles['active-item']);
   });
 
   it('accepts a custom default path', () => {
@@ -123,7 +123,7 @@ describe('Sidebar', () => {
     const item = screen.getByRole('link', { name: 'bye' });
 
     expect(item).toBeInTheDocument();
-    expect(item).toHaveClass(styles.active);
+    expect(item).toHaveClass(styles['active-item']);
   });
 
   it('accepts onChange when in uncontrolled mode', () => {
@@ -168,7 +168,7 @@ describe('Sidebar', () => {
     userEvent.click(screen.getByRole('button', { name: 'hello' }));
     userEvent.click(screen.getByRole('link', { name: 'world' }));
 
-    expect(screen.getByRole('link', { name: 'world' })).not.toHaveClass(styles.active);
+    expect(screen.getByRole('link', { name: 'world' })).not.toHaveClass(styles['active-item']);
 
     // The onChange function has been called with the new desired path.
     expect(onChange.mock.calls.length).toBe(1);
