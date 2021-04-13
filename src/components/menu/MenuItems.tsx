@@ -86,7 +86,7 @@ export default function MenuItems({
             exit={{
               opacity: 0,
               scale: 0.9,
-              y: '0px',
+              y: '5px',
               transition: framerTransition(0.4),
             }}
             animate={{ opacity: 1, scale: 1, y: '0px' }}
