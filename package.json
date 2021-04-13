@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "build": "next build",
-    "build-storybook": "build-storybook",
+    "build-storybook": "build-storybook -s ./public",
     "dev": "next dev",
     "start": "next start",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -s ./public",
     "test": "jest"
   },
   "dependencies": {
