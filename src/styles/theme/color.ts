@@ -62,4 +62,5 @@ export default {
   primary,
   secondary: gray(5),
   text: gray(9),
+  white: '#fff',
 } as const;

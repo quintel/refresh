@@ -71,3 +71,14 @@ export default text;
 export function fontSize(...args: Parameters<typeof text>): TypographyRule['fontSize'] {
   return text(...args).fontSize;
 }
+
+/**
+ * Font faces.
+ */
+export const fontFamily = {
+  sansSerif:
+    "'Inter var', 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, " +
+    'Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif',
+
+  monospace: "'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace",
+};

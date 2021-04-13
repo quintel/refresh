@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-import framerTransition from '@/styles/framerTransition';
+import { transition } from '@/styles/theme';
 import shadows from '@/styles/shadows';
 import { indigo } from '@/styles/colors';
 import { sm } from '@/styles/typography';
@@ -87,10 +87,10 @@ export default function MenuItems({
               opacity: 0,
               scale: 0.9,
               y: '5px',
-              transition: framerTransition(0.4),
+              transition: transition.framerTransition(0.4),
             }}
             animate={{ opacity: 1, scale: 1, y: '0px' }}
-            transition={framerTransition(0.2)}
+            transition={transition.framerTransition(0.2)}
           >
             <StyledMenuItems position={position} {...props}>
               {children}
