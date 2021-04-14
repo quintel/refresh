@@ -1,3 +1,5 @@
+@use "sass:list";
+
 // Borders
 // -------
 
@@ -119,7 +121,11 @@ $transition-default-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
  *   @include default-tranasition(background, box-shadow);
  */
 @mixin default-transition($properties...) {
-  transition-duration: $transition-default-duration;
-  transition-property: $properties;
-  transition-timing-function: $transition-default-timing-function;
+  @if list.length($properties) == 1 {
+    transition: $properties $transition-default-duration $transition-default-timing-function;
+  } @else {
+    transition-duration: $transition-default-duration;
+    transition-property: $properties;
+    transition-timing-function: $transition-default-timing-function;
+  }
 }
