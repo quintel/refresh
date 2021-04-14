@@ -45,7 +45,7 @@ const headerLinkFill = css`
 
   ${transition.default(['background', 'color'])}
 
-  &:hover {
+  &:hover, &[aria-expanded="true"] {
     background: rgb(255 255 255 / 20%);
   }
 `;
@@ -61,7 +61,7 @@ const headerLinkOutline = css`
 
   ${transition.default(['border', 'color'])}
 
-  &:hover {
+  &:hover, &[aria-expanded="true"] {
     box-shadow: inset 0 0 0 2px ${Color(color.white).fade(0.8).toString()};
   }
 `;
@@ -77,7 +77,7 @@ export const HeaderLink = styled.button<{ variant?: 'fill' | 'outline' }>`
   ${({ variant }) => variant === 'fill' && headerLinkFill}
   ${({ variant }) => variant === 'outline' && headerLinkOutline}
 
-  &:hover {
+  &:hover, &[aria-expanded="true"] {
     color: ${color.white};
   }
 
