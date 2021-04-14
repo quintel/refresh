@@ -16,7 +16,13 @@ export const Wrapper = styled.div`
  * Contains the information on the left of the nav: the dataset, end year, and saved scenario title.
  */
 export const ScenarioInfo = styled.div`
+  align-items: center;
+  display: flex;
   padding: ${space(10)} ${space(16)};
+
+  & > * {
+    margin-right: ${space(4)};
+  }
 `;
 
 export const AreaName = styled.span`

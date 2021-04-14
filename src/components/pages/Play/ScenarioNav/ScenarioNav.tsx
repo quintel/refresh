@@ -1,5 +1,7 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@/components/menu';
 import Divider from '@/components/Divider';
+import RegionFlagIcon from '@/components/RegionFlagIcon';
+
 import {
   ActionButton,
   Actions,
@@ -51,7 +53,8 @@ export default function ScenarioNav({
   return (
     <Wrapper>
       <ScenarioInfo>
-        <AreaName>{areaName}</AreaName> {endYear}
+        <RegionFlagIcon regionCode={areaName} /> <AreaName>{areaName}</AreaName>{' '}
+        <span>{endYear}</span>
         {savedScenario && <ScenarioTitle>{savedScenario.title}</ScenarioTitle>}
       </ScenarioInfo>
       <Actions>
