@@ -4,6 +4,7 @@ import { space } from '@/styles/theme';
 const arrowCSS = css`
   display: inline;
   margin-left: -${space(2)};
+  margin-right: -4px;
 `;
 
 /**
