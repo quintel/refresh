@@ -1,6 +1,5 @@
 export {
   Menu,
-  MenuButton,
   MenuList,
   MenuPopover,
   MenuItem,
@@ -10,4 +9,5 @@ export {
 
 import '@reach/menu-button/styles.css';
 
+export { default as MenuButton } from './MenuButton';
 export { default as MenuItems } from './MenuItems';

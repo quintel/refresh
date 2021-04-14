@@ -1,5 +1,23 @@
 @use '../../styles/tokens' as *;
 
+/**
+ * MenuButton
+ */
+
+.button {
+  align-items: center;
+  display: align-flex;
+}
+
+.arrow {
+  display: inline;
+  margin-left: -$space-2;
+}
+
+/**
+ * MenuItems
+ */
+
 .wrapper {
   // Ensure menu is on top of the button when the button is :active.
   position: relative;
