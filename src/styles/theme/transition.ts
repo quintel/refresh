@@ -1,4 +1,5 @@
 import CSS from 'csstype';
+import { env } from 'process';
 
 type TransitionCreator = {
   (
@@ -51,7 +52,7 @@ function framerTransition(
   duration = defaultDuration
 ): { duration: number; ease: [number, number, number, number] } {
   return {
-    duration,
+    duration: env.NODE_ENV === 'test' ? 0 : duration,
     ease: [0.4, 0, 0.2, 1],
   };
 }
