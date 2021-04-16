@@ -8,9 +8,12 @@ export default {
   component: Dialog,
 } as Meta;
 
-type StoryProps = React.ComponentProps<typeof Dialog>;
+type StoryProps = Omit<
+  React.ComponentProps<typeof Dialog>,
+  'aria-label' | 'aria-labelledby' | 'as' | 'children' | 'theme'
+>;
 
-const Template: Story<StoryProps> = (props: Omit<StoryProps, 'aria-label' | 'aria-labelledby'>) => {
+const Template: Story<StoryProps> = (props: StoryProps) => {
   const { isOpen, onOpen, onClose } = useDialog(props.isOpen);
   let content = <p>This is the content of the dialog.</p>;
 

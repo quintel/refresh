@@ -55,6 +55,7 @@ export default function Dialog({
   children,
   onClose,
   isDismissable = true,
+  size = 'lg',
   title,
   ...rest
 }: DialogProps): React.ReactElement {
@@ -65,7 +66,7 @@ export default function Dialog({
 
   return (
     <DialogOverlay {...rest} onDismiss={isDismissable ? onClose : undefined}>
-      <DialogContent {...ariaProps}>
+      <DialogContent {...ariaProps} size={size}>
         {title && <DialogHeader>{title}</DialogHeader>}
 
         {children}

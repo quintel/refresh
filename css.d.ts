@@ -7,6 +7,9 @@ declare module 'csstype' {
     // Play/Sidebar
     '--bar-width'?: string;
 
+    // Dialog
+    '--dialog-width'?: string;
+
     // Custom properties for Disclosure.
     '--panel-height'?: string;
   }
