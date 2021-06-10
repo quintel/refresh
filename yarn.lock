@@ -1948,6 +1948,17 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
+"@reach/slider@^0.15.0":
+  version "0.15.0"
+  resolved "https://registry.yarnpkg.com/@reach/slider/-/slider-0.15.0.tgz#6b871e913bf10aa8f1ee5a4090478deff71d9c39"
+  integrity sha512-8dYJiclMpjHJ/wc0pIUxbwf8d3oO9ojnbMO31HPdqCqa+2KK8MoYzVdD32VsEa+gznHjoG9c05PPsrAjQd1yYg==
+  dependencies:
+    "@reach/auto-id" "0.15.0"
+    "@reach/utils" "0.15.0"
+    prop-types "^15.7.2"
+    tiny-warning "^1.0.3"
+    tslib "^2.1.0"
+
 "@reach/utils@0.15.0":
   version "0.15.0"
   resolved "https://registry.yarnpkg.com/@reach/utils/-/utils-0.15.0.tgz#5b183d668f9bb900b2dec7a33c028a2a828d27b2"
