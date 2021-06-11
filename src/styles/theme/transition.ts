@@ -48,9 +48,10 @@ const createTransition: TransitionCreator = (properties, options = {}) => {
  * Creates a config object which may be supplied to Framer, animating the properties with the chosen
  * duration.
  */
-function framerTransition(
-  duration = defaultDuration
-): { duration: number; ease: [number, number, number, number] } {
+function framerTransition(duration = defaultDuration): {
+  duration: number;
+  ease: [number, number, number, number];
+} {
   return {
     duration: env.NODE_ENV === 'test' ? 0 : duration,
     ease: [0.4, 0, 0.2, 1],
