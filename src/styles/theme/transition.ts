@@ -3,7 +3,7 @@ import { env } from 'process';
 
 type TransitionCreator = {
   (
-    properties: keyof CSS.Properties | (keyof CSS.Properties)[],
+    properties: keyof CSS.PropertiesHyphen | (keyof CSS.PropertiesHyphen)[],
     options?: { duration?: string | number; timingFunction?: string }
   ): { [key: string]: string | undefined };
 };
