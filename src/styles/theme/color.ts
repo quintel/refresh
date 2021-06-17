@@ -60,7 +60,7 @@ const primary = createFetcherWithDefault(
 export default {
   gray,
   primary,
-  secondary: gray(5),
+  secondary: gray(),
   text: gray(9),
   white: '#fff',
 } as const;

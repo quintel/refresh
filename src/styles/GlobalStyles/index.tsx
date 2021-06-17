@@ -4,6 +4,7 @@ import inter from './inter';
 import overrides from './overrides';
 import reset from './reset';
 import { sm } from '../typography';
+import { color } from '../theme';
 
 const globalStyles = css`
   ${reset}
@@ -15,13 +16,27 @@ const globalStyles = css`
       Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     font-size: 16px;
   }
+
   html,
   body {
     margin: 0;
     padding: 0;
   }
+
   body {
     ${sm}
+  }
+
+  a {
+    color: ${color.primary(6)};
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: ${color.text};
+    }
   }
 `;
 

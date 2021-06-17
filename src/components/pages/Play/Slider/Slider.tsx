@@ -1,34 +1,17 @@
 import { useRef, useState } from 'react';
-import styled from '@emotion/styled';
 import { VisuallyHidden } from '@reach/visually-hidden';
 
 import { Slider as BasicSlider } from '@/components/slider';
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@/components/disclosure';
-import { space } from '@/styles/theme';
+import { MinusIcon, PlusIcon } from './icons';
+import SliderDescription from './SliderDescription';
 
-const SliderRow = styled.div`
-  align-items: center;
-  display: flex;
-  flex-wrap: nowrap;
-
-  output {
-    text-align: right;
-    width: 75px;
-  }
-`;
-
-const SliderWrapper = styled.div`
-  flex: 1;
-  padding: 0 ${space(10)};
-`;
-
-const SliderName = styled.div`
-  width: 150px;
-`;
-
-const SliderButton = styled.button`
-  width: ${space(16)};
-`;
+import {
+  SliderButton,
+  SliderContainer,
+  SliderName,
+  SliderRow,
+  SliderWidgetWrapper,
+} from './styles';
 
 /**
  * Returns a value such that it complies with the step.
@@ -49,6 +32,13 @@ const SliderButton = styled.button`
 function snapValue(value: number, step: number) {
   const multiplier = 1 / step;
   return Math.round(value * multiplier) / multiplier;
+}
+
+/**
+ * Returns if a description is present and should be shown by the Slider.
+ */
+function hasDescription(str: string | undefined): str is string {
+  return typeof str === 'string';
 }
 
 type BasicSliderProps = React.ComponentProps<typeof BasicSlider>;
@@ -83,14 +73,22 @@ export default function Slider({
   const openDescription = () => descriptionToggleButton.current?.click();
 
   return (
-    <div>
+    <SliderContainer>
       <SliderRow>
         <SliderName>{name}</SliderName>
-        <SliderButton onClick={() => setValue(defaultValue)}>R</SliderButton>
-        <SliderButton onClick={decreaseValue}>
-          <span aria-hidden="true">-</span> <VisuallyHidden>Decrease value</VisuallyHidden>
+        <SliderButton
+          disabled={value === defaultValue}
+          hoverOnly={true}
+          onClick={() => setValue(defaultValue)}
+          title="Reset to original value"
+        >
+          <span aria-hidden="true">R</span> <VisuallyHidden>Reset to original value</VisuallyHidden>
         </SliderButton>
-        <SliderWrapper>
+        <SliderButton disabled={value === min} hoverOnly={true} onClick={decreaseValue}>
+          <MinusIcon />
+          <VisuallyHidden>Decrease value</VisuallyHidden>
+        </SliderButton>
+        <SliderWidgetWrapper>
           <BasicSlider
             max={max}
             min={min}
@@ -99,23 +97,26 @@ export default function Slider({
             value={value}
             {...rest}
           />
-        </SliderWrapper>
-        <SliderButton onClick={increaseValue}>
-          <span aria-hidden="true">+</span> <VisuallyHidden>Increase value</VisuallyHidden>
+        </SliderWidgetWrapper>
+        <SliderButton disabled={value === max} hoverOnly={true} onClick={increaseValue}>
+          <PlusIcon />
+          <VisuallyHidden>Increase value</VisuallyHidden>
         </SliderButton>
         <output>{value}</output>
-        <SliderButton aria-hidden="true" onClick={openDescription}>
+        <SliderButton
+          aria-hidden="true"
+          data-testid="show-description"
+          disabled={!hasDescription(description)}
+          onClick={openDescription}
+        >
           ?
         </SliderButton>
       </SliderRow>
-      <Disclosure>
-        <VisuallyHidden>
-          <DisclosureButton ref={descriptionToggleButton} as="button">
-            Show description
-          </DisclosureButton>
-        </VisuallyHidden>
-        <DisclosurePanel>{description}</DisclosurePanel>
-      </Disclosure>
-    </div>
+      {hasDescription(description) && (
+        <SliderDescription toggleButtonRef={descriptionToggleButton}>
+          {description}
+        </SliderDescription>
+      )}
+    </SliderContainer>
   );
 }
