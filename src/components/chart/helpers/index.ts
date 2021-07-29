@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 
 import type { ChartConfig } from '../types';
 
+export { default as useToggleableSeries } from './useToggleableSeries';
+
 /**
  * Given Data for a chart, returns a memoized array containing keys of all series.
  */
