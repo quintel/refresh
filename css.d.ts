@@ -12,5 +12,8 @@ declare module 'csstype' {
 
     // Custom properties for Disclosure.
     '--panel-height'?: string;
+
+    // Series colours in charts and legends.
+    '--series-color'?: string;
   }
 }
