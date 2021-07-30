@@ -1,5 +1,8 @@
 import { useMemo, useState } from 'react';
 
+export type IsSeriesFixated = (key: string) => boolean;
+export type SetFixatedSeries = (key?: string) => void;
+
 export default function useFixatedSeries(keys: string[]): {
   fixatedSeries: string | undefined;
   isSeriesDimmed: (key: string) => boolean;
