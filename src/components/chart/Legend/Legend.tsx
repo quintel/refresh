@@ -4,7 +4,7 @@ import type { AllOrNone } from '@/helpers/types';
 /**
  * Type for the legend items
  */
-type LegendItemProps = {
+export type LegendItemProps = {
   color: string;
   hidden?: boolean;
   name: string;

@@ -1,7 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import Legend from '.';
+import Legend, { legendItemPropsFromConfig } from '.';
+import type { LegendItemProps } from './Legend';
+import { buildAnnotation, buildChart, buildSeries } from '../helpers/testHelpers';
 
 const stubItems = [
   { name: 'One', color: 'blue' },
@@ -123,5 +125,109 @@ describe('Legend with events', () => {
 
     expect(onItemMouseOut.mock.calls.length).toBe(3);
     expect(onItemMouseOut.mock.calls[2][0]).toEqual('Two');
+  });
+});
+
+describe('legendItemPropsFromConfig', () => {
+  describe('with a visible series', () => {
+    let props: LegendItemProps[] = [];
+
+    beforeAll(() => {
+      props = legendItemPropsFromConfig(
+        buildChart({
+          series: [buildSeries({ name: 'Hello', color: 'red' })],
+        })
+      );
+    });
+
+    it('returns a single legend item', () => {
+      expect(props.length).toEqual(1);
+    });
+
+    it('sets the legend item attributes', () => {
+      const prop = props[0];
+
+      expect(prop.name).toEqual('Hello');
+      expect(prop.color).toEqual('red');
+      expect(prop.hidden).toBeFalsy();
+      expect(prop.style).toEqual('box');
+    });
+  });
+
+  describe('with hidden visible series', () => {
+    let props: LegendItemProps[] = [];
+
+    beforeAll(() => {
+      props = legendItemPropsFromConfig(
+        buildChart({
+          series: [buildSeries({ name: 'Hello', color: 'red', hidden: true })],
+        })
+      );
+    });
+
+    it('returns a single legend item', () => {
+      expect(props.length).toEqual(1);
+    });
+
+    it('sets the legend item attributes', () => {
+      const prop = props[0];
+
+      expect(prop.name).toEqual('Hello');
+      expect(prop.color).toEqual('red');
+      expect(prop.hidden).toBeTruthy();
+      expect(prop.style).toEqual('box');
+    });
+  });
+
+  describe('with a visible series', () => {
+    let props: LegendItemProps[] = [];
+
+    beforeAll(() => {
+      props = legendItemPropsFromConfig(
+        buildChart({
+          series: [],
+          annotations: [buildAnnotation({ name: 'Goodbye', color: 'blue' })],
+        })
+      );
+    });
+
+    it('returns a single legend item', () => {
+      expect(props.length).toEqual(1);
+    });
+
+    it('sets the legend item attributes', () => {
+      const prop = props[0];
+
+      expect(prop.name).toEqual('Goodbye');
+      expect(prop.color).toEqual('blue');
+      expect(prop.hidden).toBeFalsy();
+      expect(prop.style).toEqual('line');
+    });
+  });
+
+  describe('with hidden visible series', () => {
+    let props: LegendItemProps[] = [];
+
+    beforeAll(() => {
+      props = legendItemPropsFromConfig(
+        buildChart({
+          series: [],
+          annotations: [buildAnnotation({ name: 'Goodbye', color: 'blue', hidden: true })],
+        })
+      );
+    });
+
+    it('returns a single legend item', () => {
+      expect(props.length).toEqual(1);
+    });
+
+    it('sets the legend item attributes', () => {
+      const prop = props[0];
+
+      expect(prop.name).toEqual('Goodbye');
+      expect(prop.color).toEqual('blue');
+      expect(prop.hidden).toBeTruthy();
+      expect(prop.style).toEqual('line');
+    });
   });
 });
