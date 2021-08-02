@@ -6,22 +6,13 @@ export type IsSeriesVisible = (key: string) => boolean;
 export type ToggleSeries = (key: string) => void;
 
 /**
- * A derivative of the ChartConfig where each series and annotation also has a boolean `hidden`
- * attribute.
- */
-type ToggledChartConfig = ChartConfig & {
-  annotations: (NonNullable<ChartConfig['annotations']>[0] & { hidden?: boolean })[];
-  series: (ChartConfig['series'][0] & { hidden?: boolean })[];
-};
-
-/**
  * Given the data for a chart and a list of the series which are hidden, returns a new data object
  * where any hidden series have a new attribute `hidden`, and their value set to the smallest number
  * allowable.
  *
  * See useToggleableChartConfig for an explation of the use of Number.MIN_VALUE.
  */
-function filterChartConfig(data: ChartConfig, hiddenSeries: Set<string>): ToggledChartConfig {
+function filterChartConfig(data: ChartConfig, hiddenSeries: Set<string>): ChartConfig {
   const { annotations, series, ...rest } = data;
 
   return {
@@ -47,6 +38,26 @@ function filterChartConfig(data: ChartConfig, hiddenSeries: Set<string>): Toggle
 }
 
 /**
+ * Given chart data, returns a set containing all the series and annotation names which are hidden
+ * in the data.
+ */
+function initialHiddenNames(data: ChartConfig) {
+  const set = new Set<string>();
+
+  for (const { name, hidden } of data.series) {
+    hidden && set.add(name);
+  }
+
+  if (data.annotations) {
+    for (const { name, hidden } of data.annotations) {
+      hidden && set.add(name);
+    }
+  }
+
+  return set;
+}
+
+/**
  * Receives data for a chart, and allows series to be toggled on and off.
  *
  * Returns new data where each hidden series has a `hidden` attribute set to true. The value of a
@@ -57,11 +68,12 @@ function filterChartConfig(data: ChartConfig, hiddenSeries: Set<string>): Toggle
  * Both series and annotations can be toggled, though this requires that they have unique keys.
  */
 export default function useToggleableSeries(data: ChartConfig): {
-  data: ToggledChartConfig;
+  data: ChartConfig;
   isSeriesVisible: IsSeriesVisible;
   toggleSeries: ToggleSeries;
 } {
-  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(new Set());
+  const initialHidden = useMemo(() => initialHiddenNames(data), [data]);
+  const [hiddenSeries, setHiddenSeries] = useState<Set<string>>(initialHidden);
 
   const toggled = useMemo(() => filterChartConfig(data, hiddenSeries), [data, hiddenSeries]);
 

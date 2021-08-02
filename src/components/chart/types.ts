@@ -18,6 +18,11 @@ export type AnnotationConfig = {
    **/
   color: string;
   /**
+   * Indicates if the annotation is hidden by default. Hidden annotations may be toggled back on by
+   * users.
+   */
+  hidden?: boolean;
+  /**
    * A unique name which identifies the annotation.
    */
   name: string;
@@ -67,6 +72,10 @@ export type SeriesConfig = {
    **/
   color: string;
   /**
+   * Indicates if the series is hidden by default. Hidden series may be toggled back on by users.
+   */
+  hidden?: boolean;
+  /**
    * A unique name which identifies the series.
    */
   name: string;
@@ -81,6 +90,7 @@ export type SeriesConfig = {
    */
   value: number[];
 };
+
 /**
  * Series are converted into "tables" where each value on the x-axis corresponds to an object
  * containing key-value pairs of each series and its value at that point on the x-axis.

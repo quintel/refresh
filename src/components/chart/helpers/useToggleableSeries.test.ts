@@ -119,4 +119,42 @@ describe('useToggleable', () => {
     expect(result.current.data).not.toBe(data);
     /* eslint-enable unicorn/consistent-destructuring */
   });
+
+  it('respects the initial state of toggled series', () => {
+    const { result } = renderHook(() =>
+      useToggleableSeries(
+        buildChart({
+          series: [buildSeries({ name: 'One', hidden: true }), buildSeries({ name: 'Two' })],
+        })
+      )
+    );
+
+    expect(result.current.data.series).toHaveLength(2);
+
+    expect(result.current.data.series[0].hidden).toBeTruthy();
+    expect(result.current.data.series[1].hidden).toBeFalsy();
+
+    expect(result.current.isSeriesVisible('One')).toBeFalsy();
+    expect(result.current.isSeriesVisible('Two')).toBeTruthy();
+  });
+
+  it('respects the initial state of toggled annotations', () => {
+    const { result } = renderHook(() =>
+      useToggleableSeries(
+        buildChart({
+          series: [],
+          annotations: [
+            buildAnnotation({ name: 'Alpha', hidden: true }),
+            buildAnnotation({ name: 'Bravo' }),
+          ],
+        })
+      )
+    );
+
+    expect(result.current.data.annotations[0].hidden).toBeTruthy();
+    expect(result.current.data.annotations[1].hidden).toBeFalsy();
+
+    expect(result.current.isSeriesVisible('Alpha')).toBeFalsy();
+    expect(result.current.isSeriesVisible('Bravo')).toBeTruthy();
+  });
 });
