@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { css } from '@emotion/react';
 
-import { color, rounded, space, textSize } from '@/styles/theme';
+import { color, rounded, space, textSize, transition } from '@/styles/theme';
 
 export type LegendItemVariant = 'box' | 'line';
 
@@ -25,7 +25,8 @@ export const LegendItem = styled.button<{
   display: inline-flex;
   margin-bottom: ${space(4)};
   padding: ${space(4)} ${space(6)};
-  transition: opacity 0.15s ease;
+
+  ${transition.default(['background', 'opacity'])}
 
   &::before {
     background: var(--series-color, transparent);
