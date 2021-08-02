@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 
 import type { ChartConfig } from '../types';
 
+export { default as calculateExtent } from './calculateExtent';
 export { default as useFixatedSeries } from './useFixatedSeries';
 export { default as useToggleableSeries } from './useToggleableSeries';
 
