@@ -10,6 +10,10 @@
     "storybook": "start-storybook -p 6006 -s ./public",
     "test": "jest"
   },
+  "moduleNameMapper": {
+    "^d3-([^/])/(.*)$": "<rootDir>/node_modules/d3-$1/dist/$2",
+    "^internmap/(.*)$": "<rootDir>/node_modules/internmap/dist/$1"
+  },
   "dependencies": {
     "@reach/accordion": "^0.15.0",
     "@reach/dialog": "^0.15.0",
