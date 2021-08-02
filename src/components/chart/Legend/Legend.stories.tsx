@@ -38,3 +38,14 @@ ItemStyles.args = {
     { name: 'style=box', color: 'red', style: 'box' },
   ],
 };
+
+export const HiddenItems = Template.bind({});
+HiddenItems.args = {
+  items: [
+    { name: 'Hidden', color: 'blue', hidden: true },
+    { name: 'Not hidden', color: 'red' },
+  ],
+  onItemClick: undefined,
+  onItemMouseOut: undefined,
+  onItemMouseOver: undefined,
+};
