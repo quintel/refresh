@@ -1,4 +1,4 @@
-import { screen, render, prettyDOM } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { scaleBand, scaleLinear } from '@visx/scale';
