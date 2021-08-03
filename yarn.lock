@@ -3284,7 +3284,7 @@
     d3-scale "^3.3.0"
     d3-time "^2.1.1"
 
-"@visx/shape@1.17.1":
+"@visx/shape@1.17.1", "@visx/shape@^1.17.1":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@visx/shape/-/shape-1.17.1.tgz#c5d83b955d2e94f39002ff986550944e24ff660a"
   integrity sha512-rVYFpytPCnV4s5U0za+jQ2jqFzKnmB3c8RP6fuOfF6kKosFPJcOYg9ikvewojARyMBTr1u3XvWV960Da+xyUdQ==
