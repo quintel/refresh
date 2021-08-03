@@ -4,7 +4,7 @@ import { Story, Meta } from '@storybook/react';
 import Legend from './';
 
 export default {
-  title: 'Example/Legend',
+  title: 'Charts/Legend',
   component: Legend,
 } as Meta;
 
