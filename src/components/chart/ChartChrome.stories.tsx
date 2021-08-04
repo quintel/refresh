@@ -31,7 +31,7 @@ Default.args = {
       {
         name: 'First series',
         color: 'blue',
-        value: [0, 10, 20],
+        value: [0, 10],
       },
     ],
     xAxis: { data: ['One', 'Two'] },
