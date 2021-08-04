@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import type { ChartConfig } from '../types';
+import type { ChartConfig, TablePoint } from '../types';
 
 export { default as calculateExtent } from './calculateExtent';
 export { default as useFixatedSeries } from './useFixatedSeries';
@@ -40,6 +40,60 @@ export function chartDimensions({
     marginTop,
     width,
   };
+}
+
+/**
+ * Returns all the x-values for a chart. When the chart specifies specific values for the xAxis, we
+ * return those. Otherwise generate keys with incrementing numbers.
+ *
+ * @privateRemarks
+ *
+ * TODO: This should support continuous series for linear scales, or tableizeData needs to be
+ * adjusted accordingly.
+ */
+function chartXValues(data: Pick<ChartConfig, 'series' | 'xAxis'>) {
+  if (data.xAxis?.data) {
+    return data.xAxis.data;
+  }
+
+  const values: number[] = [];
+  const length = data.series[0]?.value?.length || 0;
+
+  for (let i = 0; i < length; i++) {
+    values.push(i);
+  }
+
+  return values;
+}
+
+/**
+ * Returns the data for a chart as a table.
+ *
+ * A table is an array where each element represents a discrete value on the x-axis. The element is
+ * a TablePoint which contains the x-axis value as `key`, and all the series values on an object.
+ *
+ * @example
+ *   tableizeData(chartConfig)
+ *   // => [
+ *   //      { key: "Present", seriesOne: 1.0, seriesTwo: 2.0 },
+ *   //      { key: "Future",  seriesOne: 3.0, seriesTwo: 3.0 },
+ *   //    ]
+ */
+export function tableizeData(data: Pick<ChartConfig, 'series' | 'xAxis'>): TablePoint[] {
+  const points: TablePoint[] = chartXValues(data).map((key) => ({ key }));
+
+  for (const series of data.series) {
+    if (series.value.length !== points.length) {
+      throw (
+        `Series ${series.name} has a different number of values than expected; ` +
+        `got ${series.value.length}, expected ${points.length}`
+      );
+    }
+
+    for (const [index, value] of series.value.entries()) points[index][series.name] = value;
+  }
+
+  return points;
 }
 
 /**

@@ -1,4 +1,5 @@
-import { chartDimensions, tickCount } from '.';
+import { chartDimensions, tableizeData, tickCount } from '.';
+import { buildChart, buildSeries } from './testHelpers';
 
 describe('chartDimensions', () => {
   describe('with no margins given', () => {
@@ -69,6 +70,92 @@ describe('chartDimensions', () => {
         chartDimensions({ height: 100, marginLeft: 10, marginRight: 10, width: 0 }).boundedWidth
       ).toEqual(0);
     });
+  });
+});
+
+describe('tableizeData', () => {
+  it('returns an empty table when given no data', () => {
+    const table = tableizeData(buildChart({ series: [], xAxis: undefined }));
+    expect(table.length).toEqual(0);
+  });
+
+  it('returns a table when given data without a custom axis', () => {
+    const table = tableizeData(
+      buildChart({
+        series: [
+          buildSeries({ name: 'One', value: [1, 10] }),
+          buildSeries({ name: 'Two', value: [2, 20] }),
+          buildSeries({ name: 'Three', value: [3, 30] }),
+        ],
+      })
+    );
+
+    expect(table).toEqual([
+      { key: 0, One: 1, Two: 2, Three: 3 },
+      { key: 1, One: 10, Two: 20, Three: 30 },
+    ]);
+  });
+
+  it('throws an error when given irregular length data', () => {
+    expect(() => {
+      tableizeData(
+        buildChart({
+          series: [
+            buildSeries({ name: 'One', value: [1, 10] }),
+            buildSeries({ name: 'Two', value: [2] }),
+            buildSeries({ name: 'Three', value: [3, 30, 300, 3000] }),
+          ],
+        })
+      );
+    }).toThrowError(/got 1, expected 2/);
+  });
+
+  it('returns a table when given data with a custom axis', () => {
+    const table = tableizeData(
+      buildChart({
+        series: [
+          buildSeries({ name: 'One', value: [1, 10] }),
+          buildSeries({ name: 'Two', value: [2, 20] }),
+          buildSeries({ name: 'Three', value: [3, 30] }),
+        ],
+        xAxis: { data: ['Present', 'Future'] },
+      })
+    );
+
+    expect(table).toEqual([
+      { key: 'Present', One: 1, Two: 2, Three: 3 },
+      { key: 'Future', One: 10, Two: 20, Three: 30 },
+    ]);
+  });
+
+  it('throws an error when given data with a custom axis which is too long', () => {
+    expect(() => {
+      tableizeData(
+        buildChart({
+          series: [
+            buildSeries({ name: 'One', value: [1, 10] }),
+            buildSeries({ name: 'Two', value: [2, 20] }),
+            buildSeries({ name: 'Three', value: [3, 30] }),
+          ],
+          xAxis: { data: ['Present', 'Future', 'Far future'] },
+        })
+      );
+    }).toThrowError(/got 2, expected 3/);
+  });
+
+  it('throws an error when given data with a custom axis which is too short', () => {
+    expect(() => {
+      tableizeData(
+        buildChart({
+          series: [
+            buildSeries({ name: 'One', value: [1, 10] }),
+            buildSeries({ name: 'Two', value: [2, 20] }),
+            buildSeries({ name: 'Three', value: [3, 30] }),
+          ],
+          xAxis: { data: ['Present'] },
+        })
+      );
+    }).toThrowError(/got 2, expected 1/);
   });
 });
 

@@ -99,8 +99,16 @@ export type SeriesConfig = {
  *
  * @example
  *   { key: 'Future', coal: 10, gas: 20, wind: 15, solar: 15 };
+ *
+ * @privateRemarks
+ *
+ * TODO: Allowing values to be XValue | YValue is necessary as typescript otherwise complains that
+ * `key` cannot be a number (YValue). I think it would be best to change this to be a nested
+ * structure: `{ key: string, data: Record<string, YValue> }`.
+ *
+ * @private
  */
-export type TablePoint = Record<string, YValue> & { key: XValue };
+export type TablePoint = { key: XValue; [k: string]: XValue | YValue };
 
 /**
  * Permitted types for values drawn against the x-axis.
