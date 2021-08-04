@@ -17,23 +17,30 @@ function filterChartConfig(data: ChartConfig, hiddenSeries: Set<string>): ChartC
 
   return {
     ...rest,
-    series: series.map((series) =>
-      hiddenSeries.has(series.name)
-        ? {
-            ...series,
-            hidden: true,
-            value: series.value.map((value) => (value < 0 ? -Number.MIN_VALUE : Number.MIN_VALUE)),
-          }
-        : series
-    ),
-    annotations: (annotations || []).map((annotation) =>
-      hiddenSeries.has(annotation.name)
-        ? {
-            ...annotation,
-            hidden: true,
-          }
-        : annotation
-    ),
+    series: series.map((series) => {
+      const hidden = hiddenSeries.has(series.name);
+
+      if (hidden || hidden != series.hidden) {
+        return {
+          ...series,
+          hidden,
+          value: hidden
+            ? series.value.map((value) => (value < 0 ? -Number.MIN_VALUE : Number.MIN_VALUE))
+            : series.value,
+        };
+      }
+
+      return series;
+    }),
+    annotations: (annotations || []).map((annotation) => {
+      const hidden = hiddenSeries.has(annotation.name);
+
+      if (hidden != annotation.hidden) {
+        return { ...annotation, hidden };
+      }
+
+      return annotation;
+    }),
   };
 }
 

@@ -49,3 +49,30 @@ Default.args = {
     xAxis: { data: ['One', 'Two'] },
   },
 };
+
+export const HiddenSeries = Template.bind({});
+HiddenSeries.args = {
+  grid: false,
+  height: 300,
+  width: 500,
+  xScale: xScale,
+  yScale: yScale,
+  data: {
+    series: [
+      {
+        name: 'First series',
+        color: color.primary(),
+        value: [10, 20],
+        stack: true,
+      },
+      {
+        name: 'Second series',
+        color: color.success(),
+        value: [10, 10],
+        stack: true,
+        hidden: true,
+      },
+    ],
+    xAxis: { data: ['One', 'Two'] },
+  },
+};
