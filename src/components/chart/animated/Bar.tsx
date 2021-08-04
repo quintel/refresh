@@ -10,7 +10,9 @@ type StyleProps = {
   dimmed?: boolean;
 };
 
-const StyledBar = styled(Bar)<StyleProps>`
+const StyledBar = styled(Bar, {
+  shouldForwardProp: (prop: string) => prop !== 'dimmed',
+})<StyleProps>`
   ${transition.default('opacity')}
   ${({ dimmed }) => dimmed && 'opacity: 0.3;'}
 `;
