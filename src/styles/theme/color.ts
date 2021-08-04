@@ -57,10 +57,27 @@ const primary = createFetcherWithDefault(
   5
 );
 
+const success = createFetcherWithDefault(
+  {
+    0: 'hsl(149deg 81% 96%)',
+    1: 'hsl(149deg 80% 90%)',
+    2: 'hsl(152deg 76% 80%)',
+    3: 'hsl(156deg 72% 67%)',
+    4: 'hsl(158deg 64% 52%)',
+    5: 'hsl(160deg 84% 39%)',
+    6: 'hsl(161deg 94% 30%)',
+    7: 'hsl(163deg 94% 24%)',
+    8: 'hsl(163deg 88% 20%)',
+    9: 'hsl(164deg 86% 16%)',
+  },
+  5
+);
+
 export default {
   gray,
   primary,
   secondary: gray(),
+  success,
   text: gray(9),
   white: '#fff',
 } as const;
