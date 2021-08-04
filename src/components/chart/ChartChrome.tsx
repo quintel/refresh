@@ -169,7 +169,7 @@ export default function ChartChrome({
       </svg>
 
       <Legend
-        items={legendItemPropsFromConfig(data)}
+        items={legendItemPropsFromConfig(filteredData)}
         onItemClick={toggleSeries}
         onItemMouseOver={(key) => setFixatedSeries(key)}
         onItemMouseOut={() => setFixatedSeries()}

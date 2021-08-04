@@ -24,7 +24,7 @@ export function legendItemPropsFromConfig(
     items.push({
       name,
       color: color,
-      hidden: hidden,
+      hidden,
       style: 'line',
     });
 
@@ -35,7 +35,7 @@ export function legendItemPropsFromConfig(
     items.push({
       name,
       color: color,
-      hidden: hidden,
+      hidden,
       style: 'box',
     });
   }
