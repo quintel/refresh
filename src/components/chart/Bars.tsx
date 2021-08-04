@@ -70,7 +70,7 @@ export default function Bars(): React.ReactElement {
                 fill={bar.color}
                 onMouseOver={() => fixateSeries(barStack.key)}
                 onMouseOut={() => fixateSeries()}
-                className={isSeriesDimmed(barStack.key) ? 'dimmed' : undefined}
+                dimmed={isSeriesDimmed(barStack.key)}
               />
             );
           });

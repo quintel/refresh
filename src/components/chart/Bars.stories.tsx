@@ -36,7 +36,7 @@ Default.args = {
       {
         name: 'First series',
         color: color.primary(),
-        value: [0, 10],
+        value: [5, 10],
         stack: true,
       },
       {
