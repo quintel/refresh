@@ -36,13 +36,13 @@ Default.args = {
       {
         name: 'First series',
         color: color.primary(),
-        value: [5, 10],
+        value: [10, 20],
         stack: true,
       },
       {
         name: 'Second series',
         color: color.success(),
-        value: [5, 5],
+        value: [10, 10],
         stack: true,
       },
     ],
