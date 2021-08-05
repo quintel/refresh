@@ -7,6 +7,7 @@ import { ScaleBand, ScaleLinear } from 'd3-scale';
 
 import ChartContext from './ChartContext';
 import Legend, { legendItemPropsFromConfig } from './Legend';
+import NegativeRegion from './NegativeRegion';
 
 import {
   calculateExtent,
@@ -146,6 +147,8 @@ export default function ChartChrome({
     <ChartContext.Provider value={contextValue}>
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         <Group top={dimensions.marginTop} left={dimensions.marginLeft}>
+          <NegativeRegion width={width} yScale={yScale} />
+
           {children}
 
           <AxisBottom
