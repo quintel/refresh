@@ -151,10 +151,16 @@ describe('useToggleable', () => {
       )
     );
 
-    expect(result.current.data.annotations[0].hidden).toBeTruthy();
-    expect(result.current.data.annotations[1].hidden).toBeFalsy();
+    expect(result.current.data.annotations).not.toBeUndefined();
 
-    expect(result.current.isSeriesVisible('Alpha')).toBeFalsy();
-    expect(result.current.isSeriesVisible('Bravo')).toBeTruthy();
+    if (result.current.data.annotations) {
+      expect(result.current.data.annotations.length).toEqual(2);
+
+      expect(result.current.data.annotations[0].hidden).toBeTruthy();
+      expect(result.current.data.annotations[1].hidden).toBeFalsy();
+
+      expect(result.current.isSeriesVisible('Alpha')).toBeFalsy();
+      expect(result.current.isSeriesVisible('Bravo')).toBeTruthy();
+    }
   });
 });
