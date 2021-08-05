@@ -21,7 +21,6 @@ const Template: Story<React.ComponentProps<typeof ChartChrome>> = (props) => (
 export const Default = Template.bind({});
 Default.args = {
   children: [],
-  grid: false,
   height: 300,
   width: 500,
   xScale: xScale,
@@ -32,6 +31,25 @@ Default.args = {
         name: 'First series',
         color: 'blue',
         value: [0, 10],
+      },
+    ],
+    xAxis: { data: ['One', 'Two'] },
+  },
+};
+
+export const WithNegatives = Template.bind({});
+WithNegatives.args = {
+  children: [],
+  height: 300,
+  width: 500,
+  xScale: xScale,
+  yScale: yScale,
+  data: {
+    series: [
+      {
+        name: 'First series',
+        color: 'blue',
+        value: [-5, 10],
       },
     ],
     xAxis: { data: ['One', 'Two'] },

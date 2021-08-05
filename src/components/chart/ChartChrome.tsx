@@ -8,6 +8,7 @@ import { ScaleBand, ScaleLinear } from 'd3-scale';
 import ChartContext from './ChartContext';
 import Legend, { legendItemPropsFromConfig } from './Legend';
 import NegativeRegion from './NegativeRegion';
+import { HorizontalGrid } from './grid';
 
 import {
   calculateExtent,
@@ -148,6 +149,17 @@ export default function ChartChrome({
       <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
         <Group top={dimensions.marginTop} left={dimensions.marginLeft}>
           <NegativeRegion width={width} yScale={yScale} />
+
+          {displayGrid.y ? (
+            <HorizontalGrid
+              height={dimensions.boundedHeight}
+              scale={yScale}
+              tickCount={ticks}
+              width={dimensions.boundedWidth}
+            />
+          ) : (
+            false
+          )}
 
           {children}
 

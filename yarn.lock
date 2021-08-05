@@ -3247,6 +3247,20 @@
     "@types/d3-shape" "^1.3.1"
     d3-shape "^1.0.6"
 
+"@visx/grid@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@visx/grid/-/grid-1.17.1.tgz#625e69dc99f9b0a5bac04bc8ad7c6fa2352d99ab"
+  integrity sha512-dse9q3weDqPNmeXK0lGKKPRgGiDuUjJ7Mt7NNonPUyXPctNmv6lJEWZu9HJrXEGiCAVNa8PHJ7Qkns/z+mH88Q==
+  dependencies:
+    "@types/react" "*"
+    "@visx/curve" "1.7.0"
+    "@visx/group" "1.17.1"
+    "@visx/point" "1.7.0"
+    "@visx/scale" "1.14.0"
+    "@visx/shape" "1.17.1"
+    classnames "^2.3.1"
+    prop-types "^15.6.2"
+
 "@visx/group@1.17.1", "@visx/group@^1.17.1":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@visx/group/-/group-1.17.1.tgz#23818d3233511dc2360de4febc2a3ecd43c3c9d0"

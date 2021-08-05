@@ -26,7 +26,6 @@ const Template: Story<React.ComponentProps<typeof ChartChrome>> = (props) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  grid: false,
   height: 300,
   width: 500,
   xScale: xScale,
@@ -52,7 +51,6 @@ Default.args = {
 
 export const HiddenSeries = Template.bind({});
 HiddenSeries.args = {
-  grid: false,
   height: 300,
   width: 500,
   xScale: xScale,
