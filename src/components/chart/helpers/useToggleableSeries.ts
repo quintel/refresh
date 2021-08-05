@@ -20,7 +20,7 @@ function filterChartConfig(data: ChartConfig, hiddenSeries: Set<string>): ChartC
     series: series.map((series) => {
       const hidden = hiddenSeries.has(series.name);
 
-      if (hidden || hidden != series.hidden) {
+      if (hidden || hidden !== !!series.hidden) {
         return {
           ...series,
           hidden,
@@ -35,7 +35,7 @@ function filterChartConfig(data: ChartConfig, hiddenSeries: Set<string>): ChartC
     annotations: (annotations || []).map((annotation) => {
       const hidden = hiddenSeries.has(annotation.name);
 
-      if (hidden != annotation.hidden) {
+      if (hidden !== !!annotation.hidden) {
         return { ...annotation, hidden };
       }
 

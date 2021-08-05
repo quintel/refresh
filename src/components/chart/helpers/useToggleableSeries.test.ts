@@ -63,23 +63,23 @@ describe('useToggleable', () => {
 
     expect(result.current.data.annotations).toHaveLength(2);
 
-    expect(result.current.data.annotations[0].hidden).toBeFalsy();
-    expect(result.current.data.annotations[1].hidden).toBeFalsy();
+    expect(result.current.data.annotations?.[0].hidden).toBeFalsy();
+    expect(result.current.data.annotations?.[1].hidden).toBeFalsy();
 
     expect(result.current.isSeriesVisible('Alpha')).toBeTruthy();
     expect(result.current.isSeriesVisible('Bravo')).toBeTruthy();
 
     act(() => result.current.toggleSeries('Bravo'));
 
-    expect(result.current.data.annotations[0].hidden).toBeFalsy();
-    expect(result.current.data.annotations[1].hidden).toBeTruthy();
+    expect(result.current.data.annotations?.[0].hidden).toBeFalsy();
+    expect(result.current.data.annotations?.[1].hidden).toBeTruthy();
 
     expect(result.current.isSeriesVisible('Alpha')).toBeTruthy();
     expect(result.current.isSeriesVisible('Bravo')).toBeFalsy();
 
     act(() => result.current.toggleSeries('Bravo'));
 
-    expect(result.current.data.annotations[1].hidden).toBeFalsy();
+    expect(result.current.data.annotations?.[1].hidden).toBeFalsy();
     expect(result.current.isSeriesVisible('Bravo')).toBeTruthy();
   });
 
@@ -91,15 +91,15 @@ describe('useToggleable', () => {
     );
 
     // Annotation is the original object.
-    expect(result.current.data.annotations[0]).toBe(annotation);
+    expect(result.current.data.annotations?.[0]).toBe(annotation);
 
     // Annotation is a new object.
     act(() => result.current.toggleSeries('One'));
-    expect(result.current.data.annotations[0]).not.toBe(annotation);
+    expect(result.current.data.annotations?.[0]).not.toBe(annotation);
 
     // Annotation is the original object again.
     act(() => result.current.toggleSeries('One'));
-    expect(result.current.data.annotations[0]).toBe(annotation);
+    expect(result.current.data.annotations?.[0]).toBe(annotation);
   });
 
   it('returns memoized data when repeatedly given the same config object', () => {
