@@ -1,9 +1,9 @@
-import { screen, render, prettyDOM } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 
 import { scaleBand, scaleLinear } from '@visx/scale';
 
 import { Bars, ChartChrome } from '.';
-import { buildAnnotation, buildChart, buildSeries } from './helpers/testHelpers';
+import { buildChart, buildSeries } from './helpers/testHelpers';
 
 /**
  * Given a rendered bar, returns the y-position of the bar in the chart (the distance from the top
