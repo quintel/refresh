@@ -2,23 +2,23 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { scaleBand, scaleLinear } from '@visx/scale';
 
-import { Bars, ChartChrome, ParentSizeConditional } from './';
+import { Areas, ChartChrome, ParentSizeConditional } from './';
 
 import { color } from '@/styles/theme';
 
-const xScale = scaleBand<string>({ round: true }).padding(0.3);
+const xScale = scaleBand<string>({ paddingInner: 1, paddingOuter: 0, round: true });
 const yScale = scaleLinear<number>({ round: true });
 
 export default {
-  title: 'Charts/Bars',
-  component: Bars,
+  title: 'Charts/Areas',
+  component: Areas,
 } as Meta;
 
 const Template: Story<React.ComponentProps<typeof ChartChrome>> = (props) => (
   <ParentSizeConditional debounceTime={10} parentSizeStyles={{ height: 400 }}>
     {({ height, width }) => (
       <ChartChrome {...props} height={height - 50} width={width}>
-        <Bars />
+        <Areas />
       </ChartChrome>
     )}
   </ParentSizeConditional>
@@ -37,14 +37,14 @@ Default.args = {
         color: color.primary(),
         value: [10, 20],
         stack: true,
-        type: 'bar',
+        type: 'area',
       },
       {
         name: 'Second series',
         color: color.success(),
         value: [10, 10],
         stack: true,
-        type: 'bar',
+        type: 'area',
       },
     ],
     xAxis: { data: ['One', 'Two'] },
@@ -64,7 +64,7 @@ HiddenSeries.args = {
         color: color.primary(),
         value: [10, 20],
         stack: true,
-        type: 'bar',
+        type: 'area',
       },
       {
         name: 'Second series',
@@ -72,7 +72,34 @@ HiddenSeries.args = {
         value: [10, 10],
         stack: true,
         hidden: true,
-        type: 'bar',
+        type: 'area',
+      },
+    ],
+    xAxis: { data: ['One', 'Two'] },
+  },
+};
+
+export const StackedLines = Template.bind({});
+StackedLines.args = {
+  height: 300,
+  width: 500,
+  xScale: xScale,
+  yScale: yScale,
+  data: {
+    series: [
+      {
+        name: 'First series',
+        color: color.primary(),
+        value: [10, 20],
+        stack: true,
+        type: 'line',
+      },
+      {
+        name: 'Second series',
+        color: color.success(),
+        value: [10, 10],
+        stack: true,
+        type: 'line',
       },
     ],
     xAxis: { data: ['One', 'Two'] },

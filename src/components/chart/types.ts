@@ -6,7 +6,7 @@ export type AxisConfig = {
    * Optional data to be used when drawing the axis. Typically used when the chart uses a ScaleBand
    * or ScalePoint scale.
    */
-  data?: string[];
+  data?: XValue[];
 };
 
 /**
@@ -85,6 +85,10 @@ export type SeriesConfig = {
    * stacked bar charts - the stack may be a string.
    */
   stack?: boolean | string;
+  /**
+   * How to render the series.
+   */
+  type?: 'area' | 'bar' | 'line';
   /**
    * The values for the series.
    */

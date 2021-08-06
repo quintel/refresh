@@ -96,6 +96,24 @@ describe('tableizeData', () => {
     ]);
   });
 
+  it('returns a table with only the selected keys', () => {
+    const table = tableizeData(
+      buildChart({
+        series: [
+          buildSeries({ name: 'One', value: [1, 10] }),
+          buildSeries({ name: 'Two', value: [2, 20] }),
+          buildSeries({ name: 'Three', value: [3, 30] }),
+        ],
+      }),
+      ['One', 'Three']
+    );
+
+    expect(table).toEqual([
+      { key: 0, One: 1, Three: 3 },
+      { key: 1, One: 10, Three: 30 },
+    ]);
+  });
+
   it('throws an error when given irregular length data', () => {
     expect(() => {
       tableizeData(

@@ -3270,6 +3270,17 @@
     classnames "^2.3.1"
     prop-types "^15.6.2"
 
+"@visx/marker@^1.17.1":
+  version "1.17.1"
+  resolved "https://registry.yarnpkg.com/@visx/marker/-/marker-1.17.1.tgz#5112d94b17f742bed0ddff70b45cec137c926906"
+  integrity sha512-7EimyHTaKHCHmaVBbGOl+KAp22M1rooR4N9wCGd9lJX85/KD+kPpx9bsN6Qeru1fQcZcER+7Qp7ra7zhxH1Qng==
+  dependencies:
+    "@types/react" "*"
+    "@visx/group" "1.17.1"
+    "@visx/shape" "1.17.1"
+    classnames "^2.3.1"
+    prop-types "^15.6.2"
+
 "@visx/pattern@^1.17.1":
   version "1.17.1"
   resolved "https://registry.yarnpkg.com/@visx/pattern/-/pattern-1.17.1.tgz#2be0b35584eaedfa0e4cdbf7fd7ae036480805ac"

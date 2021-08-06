@@ -88,7 +88,7 @@ export default function ChartChrome({
 
     // TODO setting the domain explicitly will not work with non-band scales; we'll have to detect
     // these and calculate the domain.
-    copy.domain(data.xAxis.data || []);
+    copy.domain((data.xAxis.data || []).map((val) => val.toString()));
     copy.range([0, dimensions.boundedWidth]);
 
     return copy;

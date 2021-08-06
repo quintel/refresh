@@ -29,7 +29,7 @@ export default function Bars(): React.ReactElement {
   const { colorScale, data, fixateSeries, isSeriesDimmed, isSeriesVisible, xScale, yScale } =
     useChartContext();
 
-  const seriesKeys = useSeriesNames(data);
+  const seriesKeys = useSeriesNames(data, (series) => series.type === 'bar');
 
   // Render ----------------------------------------------------------------------------------------
 

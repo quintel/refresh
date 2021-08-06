@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import type { ChartConfig, TablePoint } from '../types';
+import type { ChartConfig, SeriesConfig, TablePoint } from '../types';
 
 export { default as calculateExtent } from './calculateExtent';
 export { default as useFixatedSeries } from './useFixatedSeries';
@@ -72,6 +72,10 @@ function chartXValues(data: Pick<ChartConfig, 'series' | 'xAxis'>) {
  * A table is an array where each element represents a discrete value on the x-axis. The element is
  * a TablePoint which contains the x-axis value as `key`, and all the series values on an object.
  *
+ * @param data   - The chart data
+ * @param select - An optional function which can be used to filter which series are included in the
+ *                 tableized data.
+ *
  * @example
  *   tableizeData(chartConfig)
  *   // => [
@@ -79,10 +83,17 @@ function chartXValues(data: Pick<ChartConfig, 'series' | 'xAxis'>) {
  *   //      { key: "Future",  seriesOne: 3.0, seriesTwo: 3.0 },
  *   //    ]
  */
-export function tableizeData(data: Pick<ChartConfig, 'series' | 'xAxis'>): TablePoint[] {
+export function tableizeData(
+  data: Pick<ChartConfig, 'series' | 'xAxis'>,
+  keys?: string[]
+): TablePoint[] {
   const points: TablePoint[] = chartXValues(data).map((key) => ({ key }));
 
   for (const series of data.series) {
+    if (keys && !keys.includes(series.name)) {
+      continue;
+    }
+
     if (series.value.length !== points.length) {
       throw (
         `Series ${series.name} has a different number of values than expected; ` +
@@ -107,6 +118,21 @@ export function tickCount(available: number, ticksPerPixel = 40): number {
 /**
  * Given Data for a chart, returns a memoized array containing keys of all series.
  */
-export function useSeriesNames(data: ChartConfig): string[] {
-  return useMemo(() => data.series.map((series) => series.name), [data]);
+export function useSeriesNames(
+  data: ChartConfig,
+  select?: (series: SeriesConfig) => boolean
+): string[] {
+  return useMemo(() => {
+    const names = [];
+
+    for (const series of data.series) {
+      if (select && !select(series)) {
+        continue;
+      }
+
+      names.push(series.name);
+    }
+
+    return names;
+  }, [data, select]);
 }

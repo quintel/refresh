@@ -24,6 +24,7 @@
     "@visx/axis": "^1.17.1",
     "@visx/grid": "^1.17.1",
     "@visx/group": "^1.17.1",
+    "@visx/marker": "^1.17.1",
     "@visx/pattern": "^1.17.1",
     "@visx/responsive": "^1.10.1",
     "@visx/scale": "^1.14.0",

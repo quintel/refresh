@@ -16,6 +16,7 @@ type ChartContextProps = {
   isSeriesDimmed: IsSeriesFixated;
   isSeriesFixated: IsSeriesFixated;
   isSeriesVisible: IsSeriesVisible;
+  toggleSeries: (key: string) => void;
   width: number;
   xScale: ScaleBand<string>;
   yScale: ScaleLinear<number, number>;
