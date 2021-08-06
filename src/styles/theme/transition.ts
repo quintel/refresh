@@ -30,7 +30,8 @@ const coerceDuration = (duration: string | number) => {
  */
 const createTransition: TransitionCreator = (properties, options = {}) => {
   const props = typeof properties === 'string' ? properties : properties.join(', ');
-  const duration = coerceDuration(options.duration || defaultDuration);
+  const duration =
+    process.env.NODE_ENV === 'test' ? '0' : coerceDuration(options.duration || defaultDuration);
   const timingFunction = options.timingFunction || defaultTimingFunction;
 
   return typeof properties === 'string' || properties.length === 1
