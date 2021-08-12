@@ -87,7 +87,7 @@ export function tableizeData(
   data: Pick<ChartConfig, 'series' | 'xAxis'>,
   keys?: string[]
 ): TablePoint[] {
-  const points: TablePoint[] = chartXValues(data).map((key) => ({ key }));
+  const points: TablePoint[] = chartXValues(data).map((x) => ({ x, values: {} }));
 
   for (const series of data.series) {
     if (keys && !keys.includes(series.name)) {
@@ -101,7 +101,9 @@ export function tableizeData(
       );
     }
 
-    for (const [index, value] of series.value.entries()) points[index][series.name] = value;
+    for (const [index, value] of series.value.entries()) {
+      points[index].values[series.name] = value;
+    }
   }
 
   return points;

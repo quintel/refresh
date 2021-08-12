@@ -8,7 +8,7 @@ import { transition } from '@/styles/theme';
 
 import { TablePoint } from './types';
 
-const getBar = ({ key }: TablePoint) => key;
+const getBar = ({ x }: TablePoint) => x;
 
 /**
  * Adds a test ID to bars for each access in tests.
@@ -36,6 +36,7 @@ export default function Bars(): React.ReactElement {
   return (
     <BarStack<TablePoint, string>
       data={tableizeData(data)}
+      value={(d, key) => d.values[key]}
       keys={seriesKeys}
       xScale={xScale}
       yScale={yScale}

@@ -112,7 +112,7 @@ export type SeriesConfig = {
  *
  * @private
  */
-export type TablePoint = { key: XValue; [k: string]: XValue | YValue };
+export type TablePoint = { x: XValue; values: Record<string, YValue> };
 
 /**
  * Permitted types for values drawn against the x-axis.

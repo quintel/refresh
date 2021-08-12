@@ -54,7 +54,8 @@ export default function Area(): React.ReactElement {
       <AreaStack
         data={table}
         keys={keys}
-        x={(d) => (xScale(d.data.key.toString()) || 0) + xScale.bandwidth() / 2}
+        value={(d, key) => d.values[key]}
+        x={(d) => (xScale(d.data.x.toString()) || 0) + xScale.bandwidth() / 2}
         y0={(d) => yScale(d[0])}
         y1={(d) => yScale(d[1])}
         offset="diverging"
@@ -104,7 +105,7 @@ export default function Area(): React.ReactElement {
                       stroke={colorScale(stack.key)}
                       strokeWidth={2}
                       transition={transition.framerTransition()}
-                      x={(d) => (xScale(d.data.key.toString()) || 0) + xScale.bandwidth() / 2}
+                      x={(d) => (xScale(d.data.x.toString()) || 0) + xScale.bandwidth() / 2}
                       y={(d) => yScale(Number(d[0] < 0 ? d[0] : d[1])) || 0}
                     />
                   </Fragment>

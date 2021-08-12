@@ -91,8 +91,8 @@ describe('tableizeData', () => {
     );
 
     expect(table).toEqual([
-      { key: 0, One: 1, Two: 2, Three: 3 },
-      { key: 1, One: 10, Two: 20, Three: 30 },
+      { x: 0, values: { One: 1, Two: 2, Three: 3 } },
+      { x: 1, values: { One: 10, Two: 20, Three: 30 } },
     ]);
   });
 
@@ -109,8 +109,8 @@ describe('tableizeData', () => {
     );
 
     expect(table).toEqual([
-      { key: 0, One: 1, Three: 3 },
-      { key: 1, One: 10, Three: 30 },
+      { x: 0, values: { One: 1, Three: 3 } },
+      { x: 1, values: { One: 10, Three: 30 } },
     ]);
   });
 
@@ -141,8 +141,8 @@ describe('tableizeData', () => {
     );
 
     expect(table).toEqual([
-      { key: 'Present', One: 1, Two: 2, Three: 3 },
-      { key: 'Future', One: 10, Two: 20, Three: 30 },
+      { x: 'Present', values: { One: 1, Two: 2, Three: 3 } },
+      { x: 'Future', values: { One: 10, Two: 20, Three: 30 } },
     ]);
   });
 
