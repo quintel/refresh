@@ -6,8 +6,6 @@ import { buildChart, buildSeries, TestChartContainer } from './helpers/testHelpe
 
 describe('Areas', () => {
   describe('when rendering series as areas', () => {
-    beforeEach(() => {});
-
     it('renders the series as areas with lines', () => {
       render(
         <TestChartContainer
