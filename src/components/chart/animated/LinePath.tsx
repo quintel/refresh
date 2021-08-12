@@ -38,12 +38,13 @@ export default function LinePath<Datum extends SeriesPoint<unknown>>({
 
         return (
           <motion.path
-            className={className}
             initial={animProps}
             animate={animProps}
             exit={animProps}
+            className={className}
+            fill="transparent"
+            strokeLinecap="round"
             strokeWidth={2}
-            stroke="black"
             {...lineProps}
           />
         );
